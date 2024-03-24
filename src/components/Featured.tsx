@@ -6,8 +6,9 @@ const getData = async () => {
     cache: "no-store",
   });
   if (!res.ok) {
-    throw new Error("product fitching feiled");
+    throw new Error("product fetching failed");
   }
+
   return res.json();
 };
 const Featured = async () => {

@@ -10,3 +10,37 @@ body,
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: 320px;
+  height: 160px;
+  display: flex;
+  animation: l9-0 2s infinite;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  flex: 1;
+  background: #3fb8af;
+  transform-origin: top right;
+  animation: l9-1 2s infinite;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+
+}
+.loader:after {
+  background: #ff3d7f;
+  transform-origin: top left;
+  --s: -1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+
+}
+@keyframes l9-0 {
+  100% {
+    transform: translateY(100%);
+  }
+}
+@keyframes l9-1 {
+  100% {
+    transform: rotate(calc(var(--s, 1) * 90deg));
+  }
+}

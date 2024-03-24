@@ -1,8 +1,18 @@
+"use client";
+import { Loader } from "@/components/loader";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const LoginPage = () => {
+  const { data, status } = useSession();
+  const router = useRouter();
+  if (status === "loading") {
+    return <Loader />;
+  }
+
   return (
     <div className="p-4 h-[80vh] sm:h-[70vh] flex items-center m-auto justify-between sm:justify-center">
       {/* BOX */}
@@ -17,7 +27,10 @@ const LoginPage = () => {
           <p className="xl:text-2xl">
             Log into your account or create a new one using social buttons
           </p>
-          <button className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md">
+          <button
+            onClick={() => signIn("google", { callbackUrl: "/" })}
+            className="flex gap-4 p-4 ring-1 ring-orange-100 rounded-md"
+          >
             <Image
               src="/google.png"
               alt=""
